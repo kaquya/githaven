@@ -26,7 +26,7 @@ function drawTree(
     y: number,
 ) {
     // Tree trunk
-    rect(ctx, x - 2, y - 5, 4, 13, "#8055332");
+    rect(ctx, x - 2, y - 5, 4, 13, "#805532");
 
     // Pixelated tree foliage
     rect(ctx, x - 8, y - 17, 16, 8, "#245b43");
@@ -65,7 +65,7 @@ function drawIsland(ctx: CanvasRenderingContext2D) {
     ctx.lineTo(165, 200);
     ctx.lineTo(110, 183);
     ctx.closePath();
-    ctx.fill;
+    ctx.fill();
 
     // Grass platform
     rect(ctx, 70, 140, 340, 15, "#4c9c63");
@@ -102,8 +102,8 @@ export function renderWorld(
         const x = ((i * 175 + time * 5) % 580) - 60;
         const y = 35 + i * 17;
 
-        rect(ctx, x, y, 55, 10, "e7f1f5");
-        rect(ctx, x + 10, y - 7, 30, 10, "e7f1f5");
+        rect(ctx, x, y, 55, 10, "#e7f1f5");
+        rect(ctx, x + 10, y - 7, 30, 10, "#e7f1f5");
     }
 
     drawIsland(ctx);
@@ -128,7 +128,7 @@ export function renderWorld(
 
     // Magical streak lights
     if (world.lanternsGlowing) {
-        const glow = Math.sin(time * 3) > 0 ? "#ffe38a" : "ffbe55";
+        const glow = Math.sin(time * 3) > 0 ? "#ffe38a" : "#ffbe55";
 
         rect(ctx, 192, 108, 5, 5, glow);
         rect(ctx, 290, 105, 5, 5, glow);
