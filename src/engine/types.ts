@@ -1,4 +1,5 @@
 export type Weather = "sunny" | "cloudy" | "rainy";
+export type WorldObjectType = "tree" | "house";
 
 export interface GitHubStats {
     username: string;
@@ -9,6 +10,14 @@ export interface GitHubStats {
     contributionsLast14Days: number;
 }
 
+export interface WorldObject {
+    id: string;
+    type: WorldObjectType;
+    x: number;
+    y: number;
+    variant: number;
+}
+
 export interface WorldState {
     level: number;
     treeCount: number;
@@ -16,4 +25,5 @@ export interface WorldState {
     weather: Weather;
     lanternsGlowing: boolean;
     avatarActive: boolean;
+    objects: WorldObject[];
 }

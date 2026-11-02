@@ -26,7 +26,7 @@ function drawTree(
     y: number,
 ) {
     // Tree trunk
-    rect(ctx, x - 2, y - 5, 4, 13, "#8055332");
+    rect(ctx, x - 2, y - 5, 4, 13, "#805332");
 
     // Pixelated tree foliage
     rect(ctx, x - 8, y - 17, 16, 8, "#245b43");
@@ -65,7 +65,7 @@ function drawIsland(ctx: CanvasRenderingContext2D) {
     ctx.lineTo(165, 200);
     ctx.lineTo(110, 183);
     ctx.closePath();
-    ctx.fill;
+    ctx.fill();
 
     // Grass platform
     rect(ctx, 70, 140, 340, 15, "#4c9c63");
@@ -102,33 +102,31 @@ export function renderWorld(
         const x = ((i * 175 + time * 5) % 580) - 60;
         const y = 35 + i * 17;
 
-        rect(ctx, x, y, 55, 10, "e7f1f5");
-        rect(ctx, x + 10, y - 7, 30, 10, "e7f1f5");
+        rect(ctx, x, y, 55, 10, "#e7f1f5");
+        rect(ctx, x + 10, y - 7, 30, 10, "#e7f1f5");
     }
 
     drawIsland(ctx);
 
     // Deterministic tree positions
-    const positions = [
-        [110, 133], [145, 130], [185, 132],
-        [285, 132], [330, 130], [370, 134],
-        [125, 115], [170, 113], [310, 112],
-        [350, 114], [ 95, 120], [390, 121],
-    ];
+    const sortedObjects = [...world.objects].sort(
+        (a, b) => a.y - b.y
+    );
 
-    for (let i = 0; i < world.treeCount; i++) {
-        const [x, y] = positions[i];
-        drawTree(ctx, x, y);
-    }
+    for (const object of sortedObjects) {
+        if (object.type === "tree") {
+            drawTree(ctx, object.x, object.y);
+        }
 
-    // Buildings
-    for (let i = 0; i < world.buildingCount; i++) {
-        drawHouse(ctx, 205 + i * 24, 139 - (i % 2) * 8);
+        if (object.type === "house") {
+            drawHouse(ctx, object.x, object.y);
+        }
+
     }
 
     // Magical streak lights
     if (world.lanternsGlowing) {
-        const glow = Math.sin(time * 3) > 0 ? "#ffe38a" : "ffbe55";
+        const glow = Math.sin(time * 3) > 0 ? "#ffe38a" : "#ffbe55";
 
         rect(ctx, 192, 108, 5, 5, glow);
         rect(ctx, 290, 105, 5, 5, glow);
