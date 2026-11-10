@@ -47,7 +47,7 @@ export default function WorldCanvas({ world }: Props) {
             ref={canvasRef}
             width={WORLD_WIDTH}
             height={WORLD_HEIGHT}
-            aria-label="Animated GitHaevn pixel-art island"
+            aria-label="Animated GitHaven pixel-art island"
             role="img"
             style={{
                 width: "100%",
